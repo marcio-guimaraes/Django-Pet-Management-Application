@@ -1,13 +1,35 @@
 <html>
+<form><button class="but" formaction="/pets/new">Novos animais</button></form>
+<style>
+    .butoes{
+    display:flex;
+    padding:10px;}
+    .but{
+    margin:10px;}
+
+</style>
 <body>
-<form>
-<button formaction="/pets/new">Novos animais</button>
-</form>
+
 <h1>{{titulo}}</h1>
     {% for bicho in n %}
+    {{bicho.nome_dono}}<br>
+<hr>
     {{bicho.nome_animal}}<br>
-    <form><button formaction="pets/edit/{{bicho.pk}}">Editar</button></form>
-    <form><button formaction="delete/{{bicho.pk}}">Deletar</button></form>
-    {% endfor %}
+    {{bicho.caracteristicas}}<br>
+
+
+<div class="butoes">
+    <form><button class="but" formaction="pets/update/{{bicho.pk}}">Editar</button></form>
+    <form><button class="but" formaction="delete/{{bicho.pk}}">Deletar</button></form>
+    <form>
+
+</form>
+
+</div>
+ {% endfor %}
+
+<form method="GET" action="/pets/new">
+   <button class="but" formaction="/pets/new">Novos animais</button>
+</form>
 </body>
 </html>

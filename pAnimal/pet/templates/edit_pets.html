@@ -10,11 +10,16 @@
     <input type="text" name="telefone" value="{{pets.telefone}}"/><br>
     Nome do animal<br>
     <input type="text" name="nome_animal" value="{{pets.nome_animal}}"/><br>
+    Raca<br>
+    <input type="text" name="raca" value="{{pets.raca}}"/><br>
     Características<br>
-    <textarea type="text-area" name="texto" cols="50" rows="10" value="{{noticia.texto}}"/> </textarea> <br>
+    <input type="text" name="caracteristicas"  value="{{pets.caracteristicas}}"/> <br>
     <input type="hidden" name="pk" value="{{pets.pk}}"/><br>
-    <button formaction="../update"> Salvar </button>
-    <button formaction="/bichos"> Listar </button>
+   <button type="submit" name="action" value="save">Salvar</button>
+
+</form>
+<form method="GET" action="/bichos">
+    <button type="submit">Listar</button>
 </form>
 </body>
 </html>

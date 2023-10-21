@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
 from pet.models import Bicho
+
 
 
 def index(request):
@@ -26,25 +28,30 @@ def save_pets(request):
     pets.raca=ra
     pets.caracteristicas=cac
     pets.save()
-    return render(request, "cad_pets.html", {'msg':"Cadastro Realizado!"})
+    return redirect('bichos')
 
-def edit_pets(request, pk):
-    pets=Bicho.objects.get(pk=pk)
-    return render(request, "edit_pets.html", {'pets': pets})
+#def edit_pets(request, pk):
+   # pets=Bicho.objects.get(pk=pk)
+   # return render(request, "edit_pets.html", {'pets': pets})
 
-def update(request):
-    pk=request.POST['pk']
-    pets=Bicho.objects.get(pk=pk)
-    pets.nome_d=request.POST['nome_dono']
-    pets.tel=request.POST['telefone']
-    pets.nome_a=request.POST['nome_animal']
-    pets.ra=request.POST['raca']
-    pets.caracteristicas=request.POST['caracteristicas']
-    pets.save()
-    return render(request, "edit_pets.html", {'pets': pets})
+def update(request, pk):
+    pet = get_object_or_404(Bicho, pk=pk)
 
+    if request.method == 'POST':
+        pet.nome_dono = request.POST.get('nome_dono', pet.nome_dono)
+        pet.telefone = request.POST.get('telefone', pet.telefone)
+        pet.nome_animal = request.POST.get('nome_animal', pet.nome_animal)
+        pet.raca = request.POST.get('raca', pet.raca)
+        pet.caracteristicas = request.POST.get('caracteristicas', pet.caracteristicas)
+        pet.data = request.POST.get('data', pet.data)
+
+        pet.save()
+        return redirect('bichos')  # Redireciona para a lista de animais após a atualização
+    else:
+        return render(request, "edit_pets.html", {'pets': pet})
 def deletar_animal(request, pk):
-    n = Bicho.objects.get(pk=pk)
-    n.delete()
-    n = Bicho.objects.all()
-    return render(request, 'bichos.html', {'n': n})
+    animal = get_object_or_404(Bicho, pk=pk)
+    animal.delete()
+    messages.success(request, 'O animal foi excluído com sucesso.')
+
+    return redirect('bichos')
