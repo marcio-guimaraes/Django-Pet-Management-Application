@@ -1,35 +1,89 @@
 <html>
-<form><button class="but" formaction="/pets/new">Novos animais</button></form>
-<style>
-    .butoes{
-    display:flex;
-    padding:10px;}
-    .but{
-    margin:10px;}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #bebec4;
+        }
 
-</style>
+        header {
+            background-color: #8b1c1c;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #6e1515;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #8b1c1c;
+        }
+
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+        .botao {
+            background-color: #8b1c1c;
+            color: #fff;
+            font-size: 15px;
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .botao:hover {
+            background-color: #6e1515;
+        }
+    </style>
+</head>
 <body>
 
-<h1>{{titulo}}</h1>
-    {% for bicho in n %}
-    {{bicho.nome_dono}}<br>
-<hr>
-    {{bicho.nome_animal}}<br>
-    {{bicho.caracteristicas}}<br>
+<header>
+    <h1>PetShop da Naclara</h1>
+</header>
 
-
-<div class="butoes">
-    <form><button class="but" formaction="pets/update/{{bicho.pk}}">Editar</button></form>
-    <form><button class="but" formaction="delete/{{bicho.pk}}">Deletar</button></form>
-    <form>
-
-</form>
-
-</div>
- {% endfor %}
+<nav>
+    <a href="/">Home</a>
+    <a href="pets/new">Cadastrar</a>
+    <a href="bichos">Listar</a>
+</nav>
 
 <form method="GET" action="/pets/new">
-   <button class="but" formaction="/pets/new">Novos animais</button>
+   <button style="margin-top:10px;" class="botao" formaction="/pets/new">Novos animais</button>
 </form>
+
+<div>
+    {% for bicho in n %}
+    Nome do dono: {{bicho.nome_dono}}<br>
+    Nome do pet: {{bicho.nome_animal}}<br>
+</div>
+
+<div>
+    <form><button class="botao" formaction="pets/update/{{bicho.pk}}">Editar</button>
+    <button class="botao" formaction="delete/{{bicho.pk}}">Deletar</button></form>
+</div><br>
+ {% endfor %}
+
 </body>
 </html>

@@ -1,25 +1,95 @@
 <html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #bebec4;
+        }
+
+        header {
+            background-color: #8b1c1c;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #6e1515;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #8b1c1c;
+        }
+
+        section {
+            padding: 20px;
+            text-align: center;
+        }
+        .botao {
+            background-color: #8b1c1c;
+            color: #fff;
+            font-size: 15px;
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .botao:hover {
+            background-color: #6e1515;
+        }
+        .espaco {
+        width: 300px;
+        }
+    </style>
+</head>
 <body>
-<h1> Cadastro de animais</h1>
+
+<header>
+    <h1>Edição de dados</h1>
+</header>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/pets/new">Cadastrar</a>
+    <a href="/bichos">Listar</a>
+</nav>
 <form method="POST">
     {%csrf_token%}
     {{msg}}<br>
     Nome do dono<br>
-    <input type="text" name="nome_dono" value="{{pets.nome_dono}}"/><br>
+    <input class="espaco" type="text" name="nome_dono" value="{{pets.nome_dono}}"/><br>
     Telefone<br>
-    <input type="text" name="telefone" value="{{pets.telefone}}"/><br>
+    <input class="espaco" type="text" name="telefone" value="{{pets.telefone}}"/><br>
     Nome do animal<br>
-    <input type="text" name="nome_animal" value="{{pets.nome_animal}}"/><br>
+    <input class="espaco" type="text" name="nome_animal" value="{{pets.nome_animal}}"/><br>
     Raca<br>
-    <input type="text" name="raca" value="{{pets.raca}}"/><br>
+    <input class="espaco" type="text" name="raca" value="{{pets.raca}}"/><br>
     Características<br>
-    <input type="text" name="caracteristicas"  value="{{pets.caracteristicas}}"/> <br>
+    <input class="espaco" type="text" name="caracteristicas"  value="{{pets.caracteristicas}}"/> <br>
     <input type="hidden" name="pk" value="{{pets.pk}}"/><br>
-   <button type="submit" name="action" value="save">Salvar</button>
+   <button class="botao" type="submit" name="action" value="save">Salvar</button>
 
 </form>
 <form method="GET" action="/bichos">
-    <button type="submit">Listar</button>
+    <button class="botao" type="submit">Listar</button>
 </form>
 </body>
 </html>
