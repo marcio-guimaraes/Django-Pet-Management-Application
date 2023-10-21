@@ -1,7 +1,4 @@
 <html xmlns="http://www.w3.org/1999/html">
- <body>
- <!DOCTYPE html>
-<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,26 +40,51 @@
             padding: 20px;
             text-align: center;
         }
-        .botao {
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
             background-color: #8b1c1c;
             color: #fff;
-            font-size: 15px;
-            padding: 5px 15px;
+            padding: 10px;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+         label {
+            font-size: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #8b1c1c;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        .botao:hover {
+        button:hover {
             background-color: #6e1515;
-        }
-        .espaco {
-        width: 300px;
         }
     </style>
 </head>
-<body>
-
+ <body>
 <header>
     <h1>Cadastro de animais</h1>
 </header>
@@ -73,20 +95,19 @@
     <a href="../bichos">Listar</a>
 </nav>
   <form method="POST">
-    {%csrf_token%}
-    {{msg}}<br>
-    Nome do dono<br>
-    <input class="espaco" type="text" name="nome_d"/><br>
-    Telefone<br>
-    <input class="espaco" type="text" name="telefone"/><br>
-    Nome do animal<br>
-    <input class="espaco" type="text" name="nome_a"/><br>
-    Raça/Espécie<br>
-    <input class="espaco" type="text" name="raca"/><br>
-    Caracteristicas<br>
-    <input style="width: 300px" type="text" name="caracteristicas" />  <br>
-    <button class="botao" formaction="save"> Salvar </button>
-    <button class="botao" formaction="/bichos"> Listar </button>
-</form>
+        {%csrf_token%}
+        <label for="nome_d">Nome do dono</label><br>
+        <input type="text" name="nome_d" id="nome_d"><br>
+        <label for="telefone">Telefone</label><br>
+        <input type="text" name="telefone" id="telefone"><br>
+        <label for="nome_a">Nome do animal</label><br>
+        <input type="text" name="nome_a" id="nome_a"><br>
+        <label for="raca">Raça/Espécie</label><br>
+        <input type="text" name="raca" id="raca"><br>
+        <label for="caracteristicas">Caracteristicas</label><br>
+        <input type="text" name="caracteristicas" id="caracteristicas"><br>
+        <button formaction="save">Salvar</button>
+        <button formaction="/bichos">Listar</button>
+    </form>
 </body>
 </html>

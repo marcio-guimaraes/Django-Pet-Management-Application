@@ -1,6 +1,5 @@
-<html>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,15 +37,33 @@
             background-color: #8b1c1c;
         }
 
-        section {
+        form {
+            max-width: 400px;
+            margin: 20px auto;
             padding: 20px;
-            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
         .botao {
             background-color: #8b1c1c;
             color: #fff;
             font-size: 15px;
-            padding: 5px 15px;
+            padding: 8px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -55,8 +72,10 @@
         .botao:hover {
             background-color: #6e1515;
         }
+
         .espaco {
-        width: 300px;
+            width: 100%;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -71,25 +90,27 @@
     <a href="/pets/new">Cadastrar</a>
     <a href="/bichos">Listar</a>
 </nav>
-<form method="POST">
-    {%csrf_token%}
-    {{msg}}<br>
-    Nome do dono<br>
-    <input class="espaco" type="text" name="nome_dono" value="{{pets.nome_dono}}"/><br>
-    Telefone<br>
-    <input class="espaco" type="text" name="telefone" value="{{pets.telefone}}"/><br>
-    Nome do animal<br>
-    <input class="espaco" type="text" name="nome_animal" value="{{pets.nome_animal}}"/><br>
-    Raca<br>
-    <input class="espaco" type="text" name="raca" value="{{pets.raca}}"/><br>
-    Características<br>
-    <input class="espaco" type="text" name="caracteristicas"  value="{{pets.caracteristicas}}"/> <br>
-    <input type="hidden" name="pk" value="{{pets.pk}}"/><br>
-   <button class="botao" type="submit" name="action" value="save">Salvar</button>
 
+<form method="POST">
+    {% csrf_token %}
+    {{ msg }}<br>
+    <label>Nome do dono</label>
+    <input class="espaco" type="text" name="nome_dono" value="{{ pets.nome_dono }}" /><br>
+    <label>Telefone</label>
+    <input class="espaco" type="text" name="telefone" value="{{ pets.telefone }}" /><br>
+    <label>Nome do animal</label>
+    <input class="espaco" type="text" name="nome_animal" value="{{ pets.nome_animal }}" /><br>
+    <label>Raça</label>
+    <input class="espaco" type="text" name="raca" value="{{ pets.raca }}" /><br>
+    <label>Características</label>
+    <input class="espaco" type="text" name="caracteristicas" value="{{ pets.caracteristicas }}" /> <br>
+    <input type="hidden" name="pk" value="{{ pets.pk }}" /><br>
+    <button class="botao" type="submit" name="action" value="save">Salvar</button>
 </form>
+
 <form method="GET" action="/bichos">
     <button class="botao" type="submit">Listar</button>
 </form>
+
 </body>
 </html>

@@ -1,4 +1,3 @@
-<html>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -42,25 +41,51 @@
             padding: 20px;
             text-align: center;
         }
+
         .botao {
             background-color: #8b1c1c;
             color: #fff;
             font-size: 15px;
-            padding: 5px 15px;
+            padding: 8px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         .botao:hover {
             background-color: #6e1515;
+        }
+
+        .animal-info {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .animal-info h3 {
+            margin-bottom: 5px;
+            color: #8b1c1c;
+        }
+
+        .animal-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .animal-actions button {
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>PetShop da Naclara</h1>
+    <h1>Lista de animais já cadastrados</h1>
 </header>
 
 <nav>
@@ -70,20 +95,22 @@
 </nav>
 
 <form method="GET" action="/pets/new">
-   <button style="margin-top:10px;" class="botao" formaction="/pets/new">Novos animais</button>
+    <button class="botao" formaction="/pets/new">Novos animais</button>
 </form>
 
-<div>
-    {% for bicho in n %}
-    Nome do dono: {{bicho.nome_dono}}<br>
-    Nome do pet: {{bicho.nome_animal}}<br>
-</div>
+{% for bicho in n %}
+    <div class="animal-info">
+        <h3>Nome do dono: {{ bicho.nome_dono }}</h3>
+        <p>Nome do pet: {{ bicho.nome_animal }}</p>
 
-<div>
-    <form><button class="botao" formaction="pets/update/{{bicho.pk}}">Editar</button>
-    <button class="botao" formaction="delete/{{bicho.pk}}">Deletar</button></form>
-</div><br>
- {% endfor %}
+        <div class="animal-actions">
+            <form>
+                <button class="botao" formaction="pets/update/{{ bicho.pk }}">Editar</button>
+                <button class="botao" formaction="delete/{{ bicho.pk }}">Deletar</button>
+            </form>
+        </div>
+    </div>
+{% endfor %}
 
 </body>
 </html>
