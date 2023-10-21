@@ -1,0 +1,20 @@
+<html>
+<body>
+<h1> Cadastro de animais</h1>
+<form method="POST">
+    {%csrf_token%}
+    {{msg}}<br>
+    Nome do dono<br>
+    <input type="text" name="nome_dono" value="{{pets.nome_dono}}"/><br>
+    Telefone<br>
+    <input type="text" name="telefone" value="{{pets.telefone}}"/><br>
+    Nome do animal<br>
+    <input type="text" name="nome_animal" value="{{pets.nome_animal}}"/><br>
+    Características<br>
+    <textarea type="text-area" name="texto" cols="50" rows="10" value="{{noticia.texto}}"/> </textarea> <br>
+    <input type="hidden" name="pk" value="{{pets.pk}}"/><br>
+    <button formaction="../update"> Salvar </button>
+    <button formaction="/bichos"> Listar </button>
+</form>
+</body>
+</html>

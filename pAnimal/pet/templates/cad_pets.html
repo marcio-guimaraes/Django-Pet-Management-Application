@@ -1,0 +1,21 @@
+<html>
+<body>
+<h1> Cadastro de animais</h1>
+<form method="POST">
+    {%csrf_token%}
+    {{msg}}<br>
+    Nome do dono<br>
+    <input type="text" name="nome_d"/><br>
+    Telefone<br>
+    <input type="text" name="telefone"/><br>
+    Nome do animal<br>
+    <input type="text" name="nome_a"/><br>
+    Raça/Espécie<br>
+    <input type="text" name="raca"/><br>
+    Caracteristicas<br>
+    <textarea type="text-area" name="caracteristicas" cols="50" rows="10"/> </textarea> <br>
+    <button formaction="save"> Salvar </button>
+    <button formaction="/bichos"> Listar </button>
+</form>
+</body>
+</html>

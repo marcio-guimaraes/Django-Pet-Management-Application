@@ -1,0 +1,13 @@
+<html>
+<body>
+<form>
+<button formaction="/pets/new">Novos animais</button>
+</form>
+<h1>{{titulo}}</h1>
+    {% for bicho in n %}
+    {{bicho.nome_animal}}<br>
+    <form><button formaction="pets/edit/{{bicho.pk}}">Editar</button></form>
+    <form><button formaction="delete/{{bicho.pk}}">Deletar</button></form>
+    {% endfor %}
+</body>
+</html>
